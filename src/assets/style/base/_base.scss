@@ -1,0 +1,27 @@
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  object-fit: cover;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+p{
+ margin:0
+}
+address{
+  margin-bottom: 0;
+}
+// 清除 inline-block 下方多餘的空白
+.material-icons{
+  vertical-align: middle;
+}
+body{
+  overflow-x: hidden;
+}

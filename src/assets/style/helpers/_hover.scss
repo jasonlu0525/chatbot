@@ -1,0 +1,95 @@
+/*
+
+需搭配 utility .hover-- 作使用
+
+     .hover--slow:
+     .hover--normal
+     .hover--fast
+
+*/
+
+@each $colorName, $color in $theme-colors {
+  @each $breakpointAttr, $breakpointValue in $grid-breakpoints {
+    @if $breakpointAttr == xs {
+      .hover {
+        &-no-hover,
+        &-no-hover > * {
+          &:hover {
+            background-color: transparent !important;
+            color: inherit !important;
+          }
+        }
+        &-bg-#{$colorName},
+        &-bg-#{$colorName} > * {
+          &:hover {
+            background-color: $color !important;
+          }
+        }
+        &-text-#{$colorName},
+        &-text-#{$colorName} > * {
+          &:hover {
+            color: $color !important;
+          }
+        }
+        &-no-cover {
+          // 定位元素專用
+          pointer-events: none;
+        }
+      }
+    }
+
+    @if $breakpointAttr != xs {
+      @media screen and (min-width: $breakpointValue) {
+        .hover {
+          &-#{$breakpointAttr}-no-hover,
+          &-#{$breakpointAttr}-no-hover > * {
+            &:hover {
+              background-color: transparent !important;
+              color: inherit !important;
+            }
+          }
+
+          &-#{ $breakpointAttr}-bg-#{$colorName},
+          &-#{ $breakpointAttr}-bg-#{$colorName} > * {
+            &:hover {
+              background-color: $color !important;
+            }
+          }
+          &-#{ $breakpointAttr}-text-#{$colorName},
+          &-#{ $breakpointAttr}-text-#{$colorName} > * {
+            &:hover {
+              color: $color !important;
+            }
+          }
+          &-no-cover {
+            // 定位元素專用
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+// border-bottom hover
+
+@each $borderAttr, $borderName in $border-widths {
+  @each $colorName, $color in $theme-colors {
+    .hover-text-decoration-#{$colorName}-border-#{$borderAttr} {
+
+      position: relative;
+
+      &::after{
+        width: 0%;
+      }
+      &:hover::after {
+        content: ' ';
+        border-bottom: 1px solid $color;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+    }
+  }
+  }
+}
